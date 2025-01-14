@@ -32,7 +32,6 @@ import frc.robot.subsystems.vision.VisionIO;
 import frc.robot.subsystems.vision.VisionIOLimelight;
 import frc.robot.subsystems.vision.VisionIOPhotonVisionSim;
 import frc.robot.util.pathplanner.AdvancedPPHolonomicDriveController;
-import java.util.function.Supplier;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
 import org.littletonrobotics.junction.Logger;
@@ -78,8 +77,7 @@ public class RobotContainer {
         vision =
             new Vision(
                 drive::addVisionMeasurement,
-                new VisionIOLimelight(
-                    VisionConstants.camera0Name, (Supplier<Rotation2d>) drive.getRotation()));
+                new VisionIOLimelight(VisionConstants.camera0Name, () -> new Rotation2d()));
         break;
 
       case SIM:
